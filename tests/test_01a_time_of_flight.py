@@ -1,5 +1,5 @@
 """01a time of flight (setup step): closure from the rough 24 ns, QM's two update branches, reruns,
-temporary overrides, raw units, and the detector's blind spot for a window that opens late.
+temporary overrides, raw units, and the case of a window that opens after the signal arrives.
 
 Measured over seeds 0 to 199 from 24 ns: stored 236 ns in 74 runs and 240 ns in 126 (true 237), edge
 212 to 216 ns into the window (true 213), offsets within 0.40 mV of the truth; a rerun on the result
@@ -106,7 +106,8 @@ def test_raw_units(setup_state, make_ctx):
 
 def test_late_window_cannot_find_edge(setup_state, make_ctx):
     """A window that opens after the signal arrived has no edge in it: QM's detector adds 0 or 4 ns
-    and the stored value stays at least the late start (the method's blind spot)."""
+    and the stored value stays at least the late start, so run 01a from a time of flight at or below
+    the true delay."""
     setup_state["qubits"][QUBIT]["resonator"]["time_of_flight"] = 300
     ctx = make_ctx(setup_state, 8)
     fit = node.run(ctx)
@@ -115,19 +116,19 @@ def test_late_window_cannot_find_edge(setup_state, make_ctx):
 
 
 @pytest.mark.slow
-def test_qm_code_default_amplitude_fails_silently(setup_state):
-    """At QM's 0.03 V code default and 100 averages, QM's edge detector stores a wrong time of
-    flight while reporting success. Measured over seeds 0 to 49: wrong (more than 4 ns from the
-    true 237 ns) in 50 of 50, every one flagged as a success; stored values 24 to 136 ns. The
+def test_qm_code_default_amplitude_off_with_success_flag(setup_state):
+    """At QM's 0.03 V code default, 100 averages and this simulator's assumed ADC noise, the
+    stored time of flight is more than 4 ns from the true 237 ns with the success flag set.
+    Measured over seeds 0 to 49: 50 of 50; stored values 24 to 136 ns. The
     README states this count."""
     from calibration_utils.common import NodeContext
     from simulator.qpu import SimulatedQPU
 
-    wrong_but_success = 0
+    off_with_success = 0
     for seed in range(50):
         ctx = NodeContext(state=copy.deepcopy(setup_state), qpu=SimulatedQPU(seed=seed), save_outputs=False)
         fit = node.run(ctx, node.Parameters(readout_amplitude_in_v=0.03))
         tof = _resonator(ctx)["time_of_flight"]
         if fit["success"] and abs(tof - TRUE_DEVICE.time_of_flight) > 4:
-            wrong_but_success += 1
-    assert wrong_but_success == 50
+            off_with_success += 1
+    assert off_with_success == 50
