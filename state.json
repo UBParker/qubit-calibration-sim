@@ -1,0 +1,51 @@
+{
+  "qubits": {
+    "q1": {
+      "f_01": 5123700073.931817,
+      "anharmonicity": -200000000.0,
+      "T1": 49933.64010778401,
+      "T2ramsey": 27420.38214009632,
+      "T2echo": 60253.22266216841,
+      "chi": -550000.0,
+      "extras": {
+        "chi_source": "08a_readout_frequency_optimization"
+      },
+      "thermalization_time": 250000,
+      "xy": {
+        "LO_frequency": 5000000000.0,
+        "operations": {
+          "x180": {
+            "amplitude": 0.1467300491092017,
+            "length": 40,
+            "sigma": 8
+          },
+          "saturation": {
+            "amplitude": 0.002,
+            "length": 20000
+          }
+        }
+      },
+      "resonator": {
+        "f_01": 7040843700.886586,
+        "LO_frequency": 6950000000.0,
+        "operations": {
+          "readout": {
+            "amplitude": 0.05,
+            "length": 1000,
+            "integration_weights_angle": -1.9846655839315028,
+            "threshold": 0.00037062619581408097
+          }
+        },
+        "readout_fidelity": 0.97,
+        "time_of_flight": 236,
+        "smearing": 0,
+        "opx_input_I": {
+          "offset": 0.0011093127696236397
+        },
+        "opx_input_Q": {
+          "offset": -0.0009993545058356748
+        }
+      }
+    }
+  }
+}

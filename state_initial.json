@@ -1,0 +1,38 @@
+{
+  "qubits": {
+    "q1": {
+      "f_01": 5.12e9,
+      "anharmonicity": -200.0e6,
+      "T1": null,
+      "T2ramsey": null,
+      "T2echo": null,
+      "chi": null,
+      "extras": {},
+      "thermalization_time": 250000,
+      "xy": {
+        "LO_frequency": 5.0e9,
+        "operations": {
+          "x180": {"amplitude": 0.1, "length": 40, "sigma": 8},
+          "saturation": {"amplitude": 0.002, "length": 20000}
+        }
+      },
+      "resonator": {
+        "f_01": 7.04e9,
+        "LO_frequency": 6.95e9,
+        "operations": {
+          "readout": {
+            "amplitude": 0.05,
+            "length": 1000,
+            "integration_weights_angle": 0.0,
+            "threshold": null
+          }
+        },
+        "readout_fidelity": null,
+        "time_of_flight": 24,
+        "smearing": 0,
+        "opx_input_I": {"offset": 0.0},
+        "opx_input_Q": {"offset": 0.0}
+      }
+    }
+  }
+}
