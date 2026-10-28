@@ -1,0 +1,72 @@
+qubit-calibration-sim
+Copyright (c) 2026 Ashley Parker
+Licensed under the MIT License (see LICENSE).
+
+This project is independent and not affiliated with Quantum Machines.
+
+Third-party material
+====================
+
+Portions of this repository are adapted from Quantum Machines' qua-libs
+(https://github.com/qua-platform/qua-libs), which is distributed under the
+BSD 3-Clause License reproduced below. The adapted material is:
+
+- calibrations/01a_time_of_flight.py, 02a_resonator_spectroscopy.py, 03a_qubit_spectroscopy.py,
+  08a_readout_frequency_optimization.py,
+  04b_power_rabi.py, 05_T1.py, 06a_ramsey.py, 06b_echo.py, 07_iq_blobs.py:
+  node structure (description, parameters, QUA program, analysis, state update)
+  and the QUA sequences, adapted from
+  qualibration_graphs/superconducting/calibrations/1Q_calibrations/. The
+  06a_ramsey.py QUA program follows the upstream virtual-detuning program
+  closely.
+- calibration_utils/time_of_flight.py: the 01a analysis (ADC conversion,
+  Savitzky-Golay smoothing, threshold edge detection, offsets and success
+  test), adapted from
+  qualibration_graphs/superconducting/calibration_utils/time_of_flight/analysis.py.
+- calibration_utils/readout_frequency_optimization.py: the 08a analysis (g/e
+  separation, trailing rolling mean, chi and success test), adapted from
+  qualibration_graphs/superconducting/calibration_utils/readout_frequency_optimization/analysis.py.
+- calibrations/90_calibration_graph_bringup.py: node order, adapted from
+  90_calibration_graph_bringup_fixed_frequency_transmon.py in the same directory.
+- qua/config.py: configuration layout and integration-weight names, adapted from
+  Quantum-Control-Applications/Superconducting/Single-Fixed-Transmon/configuration.py.
+
+Each adapted file links the upstream file it follows.
+
+---------------------------------------------------------------------------
+qua-libs license
+---------------------------------------------------------------------------
+Copyright 2020 Q.M Technologies Ltd.
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+ OF THE POSSIBILITY OF SUCH DAMAGE.
+---------------------------------------------------------------------------
+Bundled font
+---------------------------------------------------------------------------
+- assets/fonts/Inter-Regular.ttf, Inter-Medium.ttf, Inter-SemiBold.ttf: Inter 4.1,
+  Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter),
+  from the v4.1 release (https://github.com/rsms/inter/releases/tag/v4.1).
+  Licensed under the SIL Open Font License, Version 1.1; the full license text
+  is in assets/fonts/LICENSE.txt.
+
+---------------------------------------------------------------------------
+Runtime dependencies (used as libraries, not copied)
+---------------------------------------------------------------------------
+- qualibration-libs, BSD 3-Clause, https://github.com/qua-platform/qualibration-libs
+- py-qua-tools (qualang-tools), BSD 3-Clause, https://github.com/qua-platform/py-qua-tools
+- qm-qua (Quantum Machines QUA SDK), BSD 3-Clause, https://pypi.org/project/qm-qua/
+- QuTiP, BSD 3-Clause, https://github.com/qutip/qutip
+- NumPy, SciPy, xarray, matplotlib, lmfit: see each project's license.
