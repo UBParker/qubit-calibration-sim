@@ -12,5 +12,5 @@ jobs:
       - uses: astral-sh/setup-uv@v10.2.0
         with:
           python-version: "3.11"
-      - run: uv sync --locked
+      - run: uv sync --locked --group notebook
       - run: uv run pytest -q -m "slow or not slow"
